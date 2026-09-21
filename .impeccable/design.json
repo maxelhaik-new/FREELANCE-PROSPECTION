@@ -1,0 +1,147 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-21T07:42:00.000Z",
+  "title": "Design System: Prospection Locale Freelance",
+  "extensions": {
+    "colorMeta": {
+      "primary": {
+        "role": "primary",
+        "displayName": "Deep Slate",
+        "canonical": "#18181b",
+        "tonalRamp": ["#09090b", "#18181b", "#27272a", "#3f3f46", "#52525b", "#71717a", "#a1a1aa", "#fafafa"]
+      },
+      "secondary": {
+        "role": "secondary",
+        "displayName": "Subtle Gray",
+        "canonical": "#f4f4f5",
+        "tonalRamp": ["#18181b", "#27272a", "#3f3f46", "#52525b", "#71717a", "#d4d4d8", "#e4e4e7", "#f4f4f5"]
+      },
+      "canvas": {
+        "role": "neutral",
+        "displayName": "Canvas Background",
+        "canonical": "#fafafa",
+        "tonalRamp": ["#09090b", "#121215", "#18181b", "#27272a", "#71717a", "#e4e4e7", "#f4f4f5", "#fafafa"]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Surface Container",
+        "canonical": "#ffffff",
+        "tonalRamp": ["#09090b", "#121215", "#18181b", "#27272a", "#71717a", "#d4d4d8", "#f4f4f5", "#ffffff"]
+      },
+      "border-subtle": {
+        "role": "neutral",
+        "displayName": "Border Subtle",
+        "canonical": "rgba(228, 228, 231, 0.7)",
+        "tonalRamp": ["#27272a", "#3f3f46", "#52525b", "#71717a", "#a1a1aa", "#d4d4d8", "#e4e4e7", "#f4f4f5"]
+      }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Titres des panneaux principaux et modales." },
+      "headline": { "displayName": "Headline", "purpose": "Titres de sections et noms des fiches prospects." },
+      "body": { "displayName": "Body", "purpose": "Textes descriptifs, coordonnées, adresses et corps d'emails." },
+      "caption": { "displayName": "Label / Mono", "purpose": "Compteurs numériques des onglets, notes Google et badges de statut." }
+    },
+    "shadows": [
+      { "name": "micro", "value": "0 1px 3px rgba(0, 0, 0, 0.02)", "purpose": "Détachement subtil des cartes et conteneurs du fond canvas." },
+      { "name": "btn-primary", "value": "0 1px 2px rgba(0, 0, 0, 0.08)", "purpose": "Volume tactile du bouton principal." },
+      { "name": "status-glow", "value": "0 0 6px rgba(16, 185, 129, 0.5)", "purpose": "Luminescence LED de statut sur pastilles d'état." },
+      { "name": "modal", "value": "0 20px 25px -5px rgba(0, 0, 0, 0.1)", "purpose": "Élévation réservée aux dialogues modaux." }
+    ],
+    "motion": [
+      { "name": "ease-standard", "value": "cubic-bezier(0.4, 0, 0.2, 1)", "purpose": "Transition par défaut pour les états interactifs (150ms)." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "xl", "value": "1280px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Bouton d'action principale.",
+      "html": "<button class=\"ds-btn-primary\">Rechercher des prospects</button>",
+      "css": ".ds-btn-primary { background: var(--primary, #18181b); color: var(--primary-fg, #fafafa); padding: 10px 16px; font-size: 0.875rem; font-weight: 500; border: none; border-radius: 12px; cursor: pointer; box-shadow: 0 1px 2px rgba(0,0,0,0.08); transition: opacity 0.15s ease; } .ds-btn-primary:hover { opacity: 0.9; }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Bouton d'action secondaire ou de filtrage.",
+      "html": "<button class=\"ds-btn-secondary\">Filtrer les résultats</button>",
+      "css": ".ds-btn-secondary { background: var(--secondary, #f4f4f5); color: var(--secondary-fg, #18181b); padding: 10px 16px; font-size: 0.875rem; font-weight: 500; border: 1px solid var(--border-subtle, rgba(228,228,231,0.7)); border-radius: 12px; cursor: pointer; transition: background 0.15s ease; } .ds-btn-secondary:hover { background: var(--surface-subtle, #f9fafb); }"
+    },
+    {
+      "name": "Prospect Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Fiche prospect avec données et angles d'approche.",
+      "html": "<div class=\"ds-card\"><h3 class=\"ds-card-title\">Plomberie Moderne</h3><p class=\"ds-card-desc\">Artisan certifié • Bordeaux</p></div>",
+      "css": ".ds-card { background: var(--surface, #ffffff); border: 1px solid var(--border-subtle, rgba(228,228,231,0.7)); border-radius: 16px; padding: 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.02); height: auto; } .ds-card-title { font-size: 0.875rem; font-weight: 600; color: var(--text-main, #18181b); margin: 0 0 4px 0; } .ds-card-desc { font-size: 0.75rem; color: var(--text-muted, #71717a); margin: 0; }"
+    },
+    {
+      "name": "Status Badge",
+      "kind": "chip",
+      "refersTo": "badge-status",
+      "description": "Pastille d'état avec point lumineux.",
+      "html": "<span class=\"ds-badge\"><span class=\"ds-badge-dot\"></span>À contacter</span>",
+      "css": ".ds-badge { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 9999px; font-size: 0.75rem; font-weight: 500; background: rgba(245, 158, 11, 0.15); color: #78350f; } .ds-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: #f59e0b; box-shadow: 0 0 6px rgba(245, 158, 11, 0.5); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "L'Efficacité Silencieuse",
+    "overview": "Le design de cette application privilégie la clarté, la scanabilité et l'action directe. Conçu pour le mode \"Operate\", l'interface s'efface au profit des données de prospection (fiches entreprises, coordonnées, angles d'approche et génération d'emails). Inspiré de l'écosystème macOS/iOS, il utilise des ombres extrêmement diffuses, des bordures très fines et transparentes (`border-border-subtle`), et des tokens sémantiques pour hiérarchiser l'information sans bruit visuel.",
+    "keyCharacteristics": [
+      "Zéro fioriture : Les actions principales sont pleines (`bg-primary text-primary-fg`), les secondaires sont douces (`bg-secondary text-secondary-fg`) ou contourées (`border-border-subtle`).",
+      "Contraste doux & multi-thème : Le fond de l'application est en `bg-canvas`, et les cartes en `bg-surface` pour créer un détachement subtil, sans aucune couleur brute en dur.",
+      "Indicateurs lumineux : L'état du système et les sélections sont indiqués par des points de couleur (émeraude, ambre, bleu) dotés d'un effet lumineux de statut (`Status Glow`)."
+    ],
+    "rules": [
+      {
+        "name": "The Semantic Token Rule",
+        "body": "Il est strictement interdit d'utiliser des classes brutes de palette (`zinc-900`, `zinc-100`, etc.) dans les composants. Tout élément d'interface doit employer les tokens sémantiques ci-dessus pour préserver l'interchangeabilité des thèmes.",
+        "section": "colors"
+      },
+      {
+        "name": "The Status Glow Rule",
+        "body": "Les indicateurs de statut (les petits points dans les badges ou légendes) portent toujours une ombre portée de leur propre couleur pour simuler une LED allumée (`shadow-[0_0_6px_rgba(...)]`).",
+        "section": "colors"
+      },
+      {
+        "name": "The Numeric Scannability Rule",
+        "body": "Les compteurs de résultats, notes Google et volumétries de prospection sont systématiquement typés en fonte mono (`font-mono`) pour garantir un alignement tabulaire immédiat lors du scan visuel.",
+        "section": "typography"
+      },
+      {
+        "name": "The No-Crop Dynamic Content Rule",
+        "body": "Les conteneurs affichant du texte dynamique, variable ou généré par l'IA (pistes d'opportunités, résumés, angles d'attaque, corps d'email) ne doivent jamais être rognés ni masqués : interdiction du `line-clamp` sur les conteneurs avec padding interne, hauteur automatique obligatoire (`h-auto`) et rupture systématique des mots (`break-words`).",
+        "section": "layout"
+      },
+      {
+        "name": "The Flat-By-Default Rule",
+        "body": "Les surfaces sont plates au repos avec bordure douce. Les ombres marquées sont proscrites en dehors des superpositions modales.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Structural Radius Rule",
+        "body": "Les conteneurs majeurs de niveau supérieur utilisent strictement un rayon de 16px (`rounded-2xl`), tandis que les éléments cliquables et contrôles interactifs sont contraints à un rayon de 12px (`rounded-xl`) pour maintenir une hiérarchie tactile immédiate.",
+        "section": "shapes"
+      }
+    ],
+    "dos": [
+      "Do utiliser systématiquement les tokens sémantiques (`bg-canvas`, `bg-surface`, `text-main`, `text-muted`, `border-border-subtle`).",
+      "Do imposer `h-auto` et `break-words` sur tous les conteneurs de contenu textuel généré ou dynamique.",
+      "Do ajouter l'effet lumineux (`Status Glow`) sur les pastilles colorées d'indicateur d'état.",
+      "Do vérifier systématiquement la lisibilité en thème clair et en thème sombre (`data-theme=\"dark\"`)."
+    ],
+    "donts": [
+      "Don't utiliser de classes Tailwind de palette brute (`zinc-900`, `zinc-100`, etc.) dans les composants.",
+      "Don't appliquer de `line-clamp` sur des blocs avec padding interne sous peine de tronquer visuellement le texte IA.",
+      "Don't utiliser d'ombres lourdes (`shadow-lg`, `shadow-2xl`) sur des éléments à plat ou des cartes standards.",
+      "Don't introduire de labels ou sous-titres verbeux superflus (\"Cliquez ici pour...\") quand l'action est évidente."
+    ]
+  }
+}

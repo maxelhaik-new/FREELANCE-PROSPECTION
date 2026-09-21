@@ -1,0 +1,121 @@
+@import "tailwindcss";
+
+@layer base {
+  :root, [data-theme="zinc"] {
+    --canvas: #fafafa;
+    --surface: #ffffff;
+    --surface-subtle: #f9fafb;
+    --primary: #18181b;
+    --primary-hover: #27272a;
+    --primary-fg: #ffffff;
+    --secondary: #f4f4f5;
+    --secondary-hover: #e4e4e7;
+    --secondary-fg: #3f3f46;
+    --border-subtle: rgba(228, 228, 231, 0.7);
+    --border-strong: #d4d4d8;
+    --text-main: #18181b;
+    --text-muted: #71717a;
+  }
+
+  [data-theme="dark"] {
+    --canvas: #09090b;
+    --surface: #121215;
+    --surface-subtle: #18181b;
+    --primary: #fafafa;
+    --primary-hover: #f4f4f5;
+    --primary-fg: #18181b;
+    --secondary: #27272a;
+    --secondary-hover: #3f3f46;
+    --secondary-fg: #e4e4e7;
+    --border-subtle: rgba(63, 63, 70, 0.6);
+    --border-strong: #52525b;
+    --text-main: #f4f4f5;
+    --text-muted: #a1a1aa;
+  }
+}
+
+@theme {
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-surface-subtle: var(--surface-subtle);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-fg: var(--primary-fg);
+  --color-secondary: var(--secondary);
+  --color-secondary-hover: var(--secondary-hover);
+  --color-secondary-fg: var(--secondary-fg);
+  --color-border-subtle: var(--border-subtle);
+  --color-border-strong: var(--border-strong);
+  --color-main: var(--text-main);
+  --color-muted: var(--text-muted);
+}
+
+@layer base {
+  /* Theming browser surfaces according to Craft Floor */
+  ::selection {
+    background-color: var(--primary);
+    color: var(--primary-fg);
+  }
+
+  input, textarea {
+    caret-color: var(--primary);
+  }
+
+  /* Global keyboard focus-visible indicator conforming to WCAG AA */
+  :focus-visible {
+    outline: 2px solid var(--primary) !important;
+    outline-offset: 2px !important;
+  }
+
+  /* Respect vestibular preferences */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    ::before,
+    ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* Subtle macOS-like scrollbars */
+  ::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(212, 212, 216, 0.7);
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(161, 161, 170, 0.9);
+  }
+}
+
+@utility shadow-micro {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+@utility shadow-primary-btn {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+@utility shadow-glow-emerald {
+  box-shadow: 0 0 6px rgba(16, 185, 129, 0.5);
+}
+
+@utility shadow-glow-amber {
+  box-shadow: 0 0 6px rgba(245, 158, 11, 0.5);
+}
+
+@utility shadow-glow-blue {
+  box-shadow: 0 0 6px rgba(59, 130, 246, 0.5);
+}
+
+@utility shadow-glow-zinc {
+  box-shadow: 0 0 6px rgba(24, 24, 27, 0.3);
+}
