@@ -66,7 +66,7 @@ describe('Component - ProspectList Layout & Polish', () => {
 
   it('renders correctly in split view mode with nowrap counter and proper layout classes', () => {
     render(
-      <ProspectProvider>
+      <ProspectProvider userId="test-user-id">
         <ProspectList {...defaultProps} layoutMode="split" />
       </ProspectProvider>
     );
@@ -94,7 +94,7 @@ describe('Component - ProspectList Layout & Polish', () => {
   it('renders clear button when search filter text is non-empty and handles clearing', () => {
     const onSearchFilterChange = vi.fn();
     render(
-      <ProspectProvider>
+      <ProspectProvider userId="test-user-id">
         <ProspectList
           {...defaultProps}
           searchFilterText="Plomberie"
@@ -112,7 +112,7 @@ describe('Component - ProspectList Layout & Polish', () => {
 
   it('renders prospect cards with whitespace-nowrap on badges, ratings, and action buttons', () => {
     render(
-      <ProspectProvider>
+      <ProspectProvider userId="test-user-id">
         <ProspectList {...defaultProps} layoutMode="split" />
       </ProspectProvider>
     );
@@ -136,7 +136,7 @@ describe('Component - ProspectList Layout & Polish', () => {
   it('renders status select in Kanban stage without footer overflow', () => {
     const onUpdateStatus = vi.fn();
     render(
-      <ProspectProvider>
+      <ProspectProvider userId="test-user-id">
         <ProspectList
           {...defaultProps}
           filterStatus="to_contact"

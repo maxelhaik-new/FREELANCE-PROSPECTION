@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { 
   Map as MapIcon, 
-  List as ListIcon 
+  List as ListIcon,
+  LogOut
 } from "lucide-react";
 import { ProspectProvider, useProspects } from "./context/ProspectContext";
 import { StatsBento } from "./components/StatsBento";
@@ -10,8 +11,17 @@ import { ProspectList } from "./components/ProspectList";
 import { ProspectDetailModal } from "./components/ProspectDetailModal";
 import { GmailAuth } from "./components/GmailAuth";
 import { GoogleMapView } from "./components/GoogleMapView";
+import { AuthPortal } from "./components/AuthPortal";
+import { PrivacyPolicy } from "./components/PrivacyPolicy";
+import { TermsOfService } from "./components/TermsOfService";
+import { supabase } from "./lib/supabase";
+import type { Session } from "@supabase/supabase-js";
 
-function MainDashboard() {
+interface MainDashboardProps {
+  onNavigate?: (path: string) => void;
+}
+
+function MainDashboard({ onNavigate }: MainDashboardProps) {
   const {
     prospects,
     filteredProspects,
@@ -74,6 +84,13 @@ function MainDashboard() {
               onTokenChange={handleTokenChange}
               userEmail={userEmail}
             />
+            <button
+              onClick={() => supabase.auth.signOut()}
+              className="flex items-center justify-center p-2 text-muted hover:text-red-500 hover:bg-red-500/10 rounded-xl transition-colors"
+              title="Se déconnecter"
+            >
+              <LogOut className="w-4 h-4" />
+            </button>
           </div>
         </div>
       </header>
@@ -247,14 +264,114 @@ function MainDashboard() {
           userEmail={userEmail}
         />
       )}
+
+      {/* Pied de page avec liens réglementaires */}
+      <footer className="border-t border-border-subtle mt-auto py-5 bg-surface/30">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-muted">
+          <p>© {new Date().getFullYear()} Prospection Locale — Outil de prospection B2B locale pour freelances</p>
+          <div className="flex items-center gap-4">
+            <button
+              type="button"
+              onClick={() => onNavigate?.("/privacy")}
+              className="hover:text-main underline cursor-pointer"
+            >
+              Politique de confidentialité
+            </button>
+            <span>•</span>
+            <button
+              type="button"
+              onClick={() => onNavigate?.("/terms")}
+              className="hover:text-main underline cursor-pointer"
+            >
+              Conditions d'utilisation
+            </button>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
 
 export default function App() {
+  const [session, setSession] = React.useState<Session | null>(null);
+  const [loading, setLoading] = React.useState(true);
+  const [currentPath, setCurrentPath] = React.useState<string>(() => {
+    if (typeof window !== "undefined") {
+      return window.location.pathname;
+    }
+    return "/";
+  });
+
+  const navigate = React.useCallback((path: string) => {
+    if (typeof window !== "undefined") {
+      window.history.pushState({}, "", path);
+      setCurrentPath(path);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  }, []);
+
+  React.useEffect(() => {
+    const handlePopState = () => {
+      setCurrentPath(window.location.pathname);
+    };
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, []);
+
+  React.useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (session?.provider_token) {
+        sessionStorage.setItem("gmail_access_token", session.provider_token);
+        if (session.user.email) {
+          sessionStorage.setItem("gmail_user_email", session.user.email);
+        }
+      }
+      setSession(session);
+      setLoading(false);
+    });
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (session?.provider_token) {
+        sessionStorage.setItem("gmail_access_token", session.provider_token);
+        if (session.user.email) {
+          sessionStorage.setItem("gmail_user_email", session.user.email);
+        }
+      } else if (!session) {
+        sessionStorage.removeItem("gmail_access_token");
+        sessionStorage.removeItem("gmail_user_email");
+      }
+      setSession(session);
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
+
+  // Pages réglementaires publiques (accessibles sans connexion pour validation Google OAuth)
+  if (currentPath === "/privacy" || currentPath === "/confidentialite") {
+    return <PrivacyPolicy onBack={() => navigate("/")} onNavigate={navigate} />;
+  }
+
+  if (currentPath === "/terms" || currentPath === "/conditions") {
+    return <TermsOfService onBack={() => navigate("/")} onNavigate={navigate} />;
+  }
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-canvas">
+        <div className="w-8 h-8 rounded-full border-2 border-primary/20 border-t-primary animate-spin" />
+      </div>
+    );
+  }
+
+  if (!session) {
+    return <AuthPortal onAuthSuccess={() => {}} onNavigate={navigate} />;
+  }
+
   return (
-    <ProspectProvider>
-      <MainDashboard />
+    <ProspectProvider key={session.user.id} userId={session.user.id}>
+      <MainDashboard onNavigate={navigate} />
     </ProspectProvider>
   );
 }

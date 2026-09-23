@@ -115,7 +115,7 @@ describe('Context - ProspectContext', () => {
 
   it('hydrates initial prospects from localStorage', () => {
     render(
-      <ProspectProvider>
+      <ProspectProvider userId="test-user-id">
         <Consumer />
       </ProspectProvider>
     );
@@ -126,7 +126,7 @@ describe('Context - ProspectContext', () => {
 
   it('filters prospects by pipeline status', () => {
     render(
-      <ProspectProvider>
+      <ProspectProvider userId="test-user-id">
         <Consumer />
       </ProspectProvider>
     );
@@ -140,7 +140,7 @@ describe('Context - ProspectContext', () => {
 
   it('filters prospects by shortlist (identified: true)', () => {
     render(
-      <ProspectProvider>
+      <ProspectProvider userId="test-user-id">
         <Consumer />
       </ProspectProvider>
     );
@@ -154,7 +154,7 @@ describe('Context - ProspectContext', () => {
 
   it('filters prospects by search text matching name or activity', () => {
     render(
-      <ProspectProvider>
+      <ProspectProvider userId="test-user-id">
         <Consumer />
       </ProspectProvider>
     );
@@ -166,7 +166,7 @@ describe('Context - ProspectContext', () => {
 
   it('filters prospects without website', () => {
     render(
-      <ProspectProvider>
+      <ProspectProvider userId="test-user-id">
         <Consumer />
       </ProspectProvider>
     );
@@ -178,7 +178,7 @@ describe('Context - ProspectContext', () => {
 
   it('filters prospects with email', () => {
     render(
-      <ProspectProvider>
+      <ProspectProvider userId="test-user-id">
         <Consumer />
       </ProspectProvider>
     );
@@ -192,7 +192,7 @@ describe('Context - ProspectContext', () => {
 
   it('toggles prospect identified status and persists in state', () => {
     render(
-      <ProspectProvider>
+      <ProspectProvider userId="test-user-id">
         <Consumer />
       </ProspectProvider>
     );
@@ -205,7 +205,7 @@ describe('Context - ProspectContext', () => {
 
   it('updates prospect status to declined', () => {
     render(
-      <ProspectProvider>
+      <ProspectProvider userId="test-user-id">
         <Consumer />
       </ProspectProvider>
     );
@@ -218,7 +218,7 @@ describe('Context - ProspectContext', () => {
 
   it('handles prospect deletion with UndoToast and allows restoration', () => {
     render(
-      <ProspectProvider>
+      <ProspectProvider userId="test-user-id">
         <Consumer />
       </ProspectProvider>
     );
@@ -242,7 +242,7 @@ describe('Context - ProspectContext', () => {
   it('exports prospects as CSV with correct headers and BOM', () => {
     const createElementSpy = vi.spyOn(document, 'createElement');
     render(
-      <ProspectProvider>
+      <ProspectProvider userId="test-user-id">
         <Consumer />
       </ProspectProvider>
     );
@@ -254,7 +254,7 @@ describe('Context - ProspectContext', () => {
   it('exports prospects as JSON', () => {
     const createElementSpy = vi.spyOn(document, 'createElement');
     render(
-      <ProspectProvider>
+      <ProspectProvider userId="test-user-id">
         <Consumer />
       </ProspectProvider>
     );
@@ -265,7 +265,7 @@ describe('Context - ProspectContext', () => {
 
   it('handles new pipeline lifecycle: transitions between searched and to_contact via like', () => {
     render(
-      <ProspectProvider>
+      <ProspectProvider userId="test-user-id">
         <Consumer />
       </ProspectProvider>
     );
@@ -292,7 +292,7 @@ describe('Context - ProspectContext', () => {
 
   it('filters prospects by searched history status', () => {
     render(
-      <ProspectProvider>
+      <ProspectProvider userId="test-user-id">
         <Consumer />
       </ProspectProvider>
     );
@@ -316,7 +316,7 @@ describe('Context - ProspectContext', () => {
     sessionStorage.clear();
 
     render(
-      <ProspectProvider>
+      <ProspectProvider userId="test-user-id">
         <Consumer />
       </ProspectProvider>
     );

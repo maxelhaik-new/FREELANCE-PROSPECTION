@@ -1,6 +1,7 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import React from 'react';
+import { supabaseProspectService } from '../../../src/services/supabaseProspectService';
 import { ProspectProvider, useProspects } from '../../../src/context/ProspectContext';
 import { Prospect } from '../../../src/types';
 
@@ -74,6 +75,9 @@ const SearchConsumer: React.FC = () => {
 
 describe('Context - ProspectSearch Integration', () => {
   beforeEach(() => {
+    vi.spyOn(supabaseProspectService, 'fetchProspects').mockResolvedValue([]);
+    vi.spyOn(supabaseProspectService, 'fetchProfile').mockResolvedValue(null);
+    vi.spyOn(supabaseProspectService, 'upsertProspects').mockResolvedValue();
     localStorage.clear();
     vi.clearAllMocks();
   });
@@ -90,7 +94,7 @@ describe('Context - ProspectSearch Integration', () => {
     } as any);
 
     render(
-      <ProspectProvider>
+      <ProspectProvider userId="test-user-id">
         <SearchConsumer />
       </ProspectProvider>
     );
@@ -136,7 +140,7 @@ describe('Context - ProspectSearch Integration', () => {
     } as any);
 
     render(
-      <ProspectProvider>
+      <ProspectProvider userId="test-user-id">
         <SearchConsumer />
       </ProspectProvider>
     );
@@ -161,7 +165,7 @@ describe('Context - ProspectSearch Integration', () => {
     } as any);
 
     render(
-      <ProspectProvider>
+      <ProspectProvider userId="test-user-id">
         <SearchConsumer />
       </ProspectProvider>
     );
@@ -186,7 +190,7 @@ describe('Context - ProspectSearch Integration', () => {
     } as any);
 
     render(
-      <ProspectProvider>
+      <ProspectProvider userId="test-user-id">
         <SearchConsumer />
       </ProspectProvider>
     );
@@ -206,7 +210,7 @@ describe('Context - ProspectSearch Integration', () => {
     vi.spyOn(global, 'fetch').mockRejectedValueOnce(new TypeError('Failed to fetch'));
 
     render(
-      <ProspectProvider>
+      <ProspectProvider userId="test-user-id">
         <SearchConsumer />
       </ProspectProvider>
     );
@@ -228,7 +232,7 @@ describe('Context - ProspectSearch Integration', () => {
     vi.spyOn(global, 'fetch').mockRejectedValueOnce(abortError);
 
     render(
-      <ProspectProvider>
+      <ProspectProvider userId="test-user-id">
         <SearchConsumer />
       </ProspectProvider>
     );
@@ -258,7 +262,7 @@ describe('Context - ProspectSearch Integration', () => {
       } as any);
 
     render(
-      <ProspectProvider>
+      <ProspectProvider userId="test-user-id">
         <SearchConsumer />
       </ProspectProvider>
     );

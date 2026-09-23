@@ -68,8 +68,7 @@ interface ProspectContextType {
 
 const ProspectContext = createContext<ProspectContextType | null>(null);
 
-export const ProspectProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [userId, setUserId] = useState<string>(() => resolveUserId(null));
+export const ProspectProvider: React.FC<{ children: React.ReactNode; userId: string }> = ({ children, userId }) => {
   const [isDbLoading, setIsDbLoading] = useState<boolean>(true);
 
   // Initialisation immédiate : lecture du cache local s'il existe pour affichage instantané sans scintillement
@@ -77,8 +76,8 @@ export const ProspectProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     if (typeof window !== "undefined") {
       try {
         const stored =
-          localStorage.getItem("freelance_prospects_cache") ||
-          localStorage.getItem("freelance_prospects");
+          localStorage.getItem(`freelance_prospects_cache_${userId}`) ||
+          localStorage.getItem("freelance_prospects"); // fallback to legacy
         if (stored) {
           const parsed = JSON.parse(stored);
           if (Array.isArray(parsed) && parsed.length > 0) return parsed;
@@ -102,12 +101,12 @@ export const ProspectProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   useEffect(() => {
     if (typeof window !== "undefined" && !isDbLoading) {
       try {
-        localStorage.setItem("freelance_prospects_cache", JSON.stringify(prospects));
+        localStorage.setItem(`freelance_prospects_cache_${userId}`, JSON.stringify(prospects));
       } catch {
         // ignore
       }
     }
-  }, [prospects, isDbLoading]);
+  }, [prospects, isDbLoading, userId]);
 
   // Hydratation asynchrone depuis Supabase à l'initialisation ou au changement d'utilisateur
   useEffect(() => {
@@ -247,14 +246,10 @@ export const ProspectProvider: React.FC<{ children: React.ReactNode }> = ({ chil
         setUserEmail(email);
         sessionStorage.setItem("gmail_user_email", email);
       }
-      if (uid) {
-        setUserId(resolveUserId(uid));
-      }
     } else {
       sessionStorage.removeItem("gmail_access_token");
       sessionStorage.removeItem("gmail_user_email");
       setUserEmail(null);
-      setUserId(resolveUserId(null));
     }
   }, []);
 
