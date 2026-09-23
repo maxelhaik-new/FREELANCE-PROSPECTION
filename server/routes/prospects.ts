@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { searchLocalProspects, generateProspectEmail } from "../services/geminiService";
-import { autocompleteCityNew } from "../services/placesService";
+import { searchLocalProspects, generateProspectEmail } from "../services/geminiService.js";
+import { autocompleteCityNew } from "../services/placesService.js";
 
 export const prospectsRouter = Router();
 

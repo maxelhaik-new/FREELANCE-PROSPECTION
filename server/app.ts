@@ -1,6 +1,6 @@
 import express from "express";
-import { prospectsRouter } from "./routes/prospects";
-import { gmailRouter } from "./routes/gmail";
+import { prospectsRouter } from "./routes/prospects.js";
+import { gmailRouter } from "./routes/gmail.js";
 
 export function createApp() {
   const app = express();

@@ -2,8 +2,8 @@ import dotenv from "dotenv";
 dotenv.config();
 
 import { GoogleGenAI, Type } from "@google/genai";
-import { extractJsonFromText } from "../utils/jsonExtractor";
-import { searchPlacesNew } from "./placesService";
+import { extractJsonFromText } from "../utils/jsonExtractor.js";
+import { searchPlacesNew } from "./placesService.js";
 
 // 24h In-memory cache for search & generated emails to conserve AI credits
 export const searchCache = new Map<string, { timestamp: number; prospects: any[] }>();

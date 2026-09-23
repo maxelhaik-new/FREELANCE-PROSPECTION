@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { sendGmailMessage, createGmailDraft } from "../services/gmailService";
+import { sendGmailMessage, createGmailDraft } from "../services/gmailService.js";
 
 export const gmailRouter = Router();
 
