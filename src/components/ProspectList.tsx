@@ -260,7 +260,7 @@ export const ProspectList: React.FC<ProspectListProps> = ({
             )}
           </div>
           <p className="text-muted text-xs leading-relaxed">
-            Naviguez dans vos recherches cumulées. Cliquez sur le cœur pour retenir une opportunité et la basculer dans <strong>À contacter</strong>.
+            Historique cumulé de vos recherches de prospection locale.
           </p>
           {uniqueHistoryLocations.length > 0 && (
             <div className="flex items-center gap-1.5 flex-wrap pt-0.5">
@@ -322,7 +322,7 @@ export const ProspectList: React.FC<ProspectListProps> = ({
               {filterStatus === "searched"
                 ? "Aucun prospect en attente dans l'historique de recherche. Lancez une recherche pour alimenter votre vivier."
                 : filterStatus === "identified"
-                ? "Aucun prospect sélectionné. Cliquez sur le cœur pour retenir vos cibles."
+                ? "Aucun prospect dans votre sélection. Retenez des opportunités depuis vos résultats de recherche pour les ajouter ici."
                 : filterStatus === "all" && currentSearchInfo.city && currentSearchInfo.prospectIds.length === 0
                 ? `Aucun établissement trouvé pour « ${currentSearchInfo.sector} » à ${currentSearchInfo.city}. Essayez d'élargir vos critères.`
                 : filterStatus === "all" && !currentSearchInfo.city && currentSearchInfo.prospectIds.length === 0

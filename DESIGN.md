@@ -29,19 +29,19 @@ colors:
   scrollbar-hover: "rgba(161, 161, 170, 0.9)"
 typography:
   display:
-    fontFamily: "sans-serif"
+    fontFamily: "'DM Sans', sans-serif"
     fontSize: "1rem"
     fontWeight: 600
   headline:
-    fontFamily: "sans-serif"
+    fontFamily: "'DM Sans', sans-serif"
     fontSize: "0.875rem"
     fontWeight: 600
   body:
-    fontFamily: "sans-serif"
+    fontFamily: "'DM Sans', sans-serif"
     fontSize: "0.875rem"
     fontWeight: 400
   caption:
-    fontFamily: "sans-serif"
+    fontFamily: "'DM Sans', sans-serif"
     fontSize: "0.75rem"
     fontWeight: 400
 rounded:
@@ -114,11 +114,11 @@ Palette neutre et fonctionnelle entièrement pilotée par des variables CSS mult
 
 ## Typography
 
-**Display Font:** Inter, SF Pro, system-ui (with sans-serif)
-**Body Font:** Inter, SF Pro, system-ui (with sans-serif)
+**Display Font:** DM Sans, system-ui (with sans-serif)
+**Body Font:** DM Sans, system-ui (with sans-serif)
 **Label Font:** SFMono-Regular, Consolas (with monospace)
 
-**Character:** Typographie sobre et ultra-lisible typique des applications bureautiques professionnelles modernes, combinant une structure sans-serif dense pour la navigation et du mono pour les métriques.
+**Character:** Typographie sobre et ultra-lisible typique des applications bureautiques professionnelles modernes, s'appuyant sur DM Sans pour l'ensemble de l'interface et une fonte monospace pour les métriques.
 
 ### Hierarchy
 - **Display** (weight 600, 1rem, line-height 1.25): Titres des panneaux principaux et modales (`text-base tracking-tight font-semibold`).

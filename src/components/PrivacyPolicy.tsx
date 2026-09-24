@@ -19,7 +19,7 @@ export const PrivacyPolicy: React.FC<PolicyPageProps> = ({ onBack, onNavigate })
             </div>
             <div>
               <span className="text-sm font-semibold text-main leading-tight tracking-tight block">
-                Prospection Locale
+                Freelance Prospection
               </span>
               <span className="text-xs text-muted">Confidentialité & Données</span>
             </div>
@@ -43,7 +43,7 @@ export const PrivacyPolicy: React.FC<PolicyPageProps> = ({ onBack, onNavigate })
               Politique de Confidentialité
             </h1>
             <p className="text-xs text-muted">
-              Dernière mise à jour : 23 septembre 2026 • Application : Prospection Locale Freelance
+              Dernière mise à jour : 23 septembre 2026 • Application : Freelance Prospection
             </p>
           </div>
 
@@ -51,7 +51,7 @@ export const PrivacyPolicy: React.FC<PolicyPageProps> = ({ onBack, onNavigate })
           <section className="space-y-3">
             <h2 className="text-lg font-semibold text-main">1. Introduction et Responsable de Traitement</h2>
             <p className="text-sm text-muted leading-relaxed">
-              La présente Politique de Confidentialité décrit la manière dont l'application <strong>Prospection Locale</strong> (« l'Application », « nous ») collecte, utilise, protège et partage les données personnelles de ses utilisateurs (« vous »).
+              La présente Politique de Confidentialité décrit la manière dont l'application <strong>Freelance Prospection</strong> (« l'Application », « nous ») collecte, utilise, protège et partage les données personnelles de ses utilisateurs (« vous »).
             </p>
             <p className="text-sm text-muted leading-relaxed">
               L'Application est un outil d'aide à la prospection B2B locale conçu exclusivement pour les professionnels, indépendants et freelances. Nous accordons une importance primordiale au respect de votre vie privée et nous nous engageons à traiter l'ensemble des données dans le respect du Règlement Général sur la Protection des Données (RGPD - Règlement UE 2016/679) et des exigences de confidentialité de Google.
@@ -82,9 +82,9 @@ export const PrivacyPolicy: React.FC<PolicyPageProps> = ({ onBack, onNavigate })
 
           {/* Section 3 : Utilisation des API Google & Gmail */}
           <section className="space-y-4 rounded-xl bg-canvas border border-border-subtle p-5 sm:p-6">
-            <div className="flex items-center gap-2 text-primary font-semibold text-base">
-              <Lock className="w-4.5 h-4.5 text-primary" />
-              <h2>3. Utilisation des Données Google et de l'API Gmail</h2>
+            <div className="flex items-center gap-2">
+              <Lock className="w-5 h-5 text-primary shrink-0" />
+              <h2 className="text-lg font-semibold text-main">3. Utilisation des Données Google et de l'API Gmail</h2>
             </div>
             <p className="text-sm text-muted leading-relaxed">
               Lorsque vous choisissez de vous connecter avec votre compte Google ou d'activer l'intégration Gmail, nous demandons l'accès aux portées (scopes) suivantes :
@@ -102,11 +102,11 @@ export const PrivacyPolicy: React.FC<PolicyPageProps> = ({ onBack, onNavigate })
               </p>
 
               <h3 className="font-semibold text-main pt-2">Déclaration de conformité aux règles d'utilisation limitée de Google (Limited Use) :</h3>
-              <blockquote className="border-l-3 border-primary pl-4 py-1 italic bg-surface/50 rounded-r-lg text-main text-xs sm:text-sm">
-                « L'utilisation par Prospection Locale des informations reçues des API Google respecte la politique relative aux données utilisateur des services d'API Google (Google API Services User Data Policy), y compris les exigences d'utilisation limitée (Limited Use requirements). »
+              <blockquote className="border border-border-subtle px-4 py-3 italic bg-surface/70 rounded-xl text-main text-xs sm:text-sm">
+                « L'utilisation par Freelance Prospection des informations reçues des API Google respecte la politique relative aux données utilisateur des services d'API Google (Google API Services User Data Policy), y compris les exigences d'utilisation limitée (Limited Use requirements). »
               </blockquote>
               <p className="text-xs text-muted italic">
-                (English official disclosure: "Prospection Locale's use and transfer to any other app of information received from Google APIs will adhere to the Google API Services User Data Policy, including the Limited Use requirements.")
+                (English official disclosure: "Freelance Prospection's use and transfer to any other app of information received from Google APIs will adhere to the Google API Services User Data Policy, including the Limited Use requirements.")
               </p>
 
               <h3 className="font-semibold text-main pt-2">Garanties de protection des données Google :</h3>
@@ -176,7 +176,7 @@ export const PrivacyPolicy: React.FC<PolicyPageProps> = ({ onBack, onNavigate })
 
           {/* Footer inside card */}
           <div className="border-t border-border-subtle pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-muted">
-            <span>© {new Date().getFullYear()} Prospection Locale</span>
+            <span>© {new Date().getFullYear()} Freelance Prospection</span>
             {onNavigate && (
               <div className="flex items-center gap-3">
                 <button

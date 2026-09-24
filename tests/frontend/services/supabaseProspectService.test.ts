@@ -66,6 +66,19 @@ describe("Service - supabaseProspectService", () => {
       expect(row.generated_email).toEqual(sampleProspect.generatedEmail);
     });
 
+    it("sanitizes decimal and numeric values properly in prospectToRow", () => {
+      const prospectWithDecimals: Prospect = {
+        ...sampleProspect,
+        relevanceScore: 8.5,
+        rating: 4.7,
+        reviewCount: 33.7,
+      };
+      const row = prospectToRow(prospectWithDecimals, TEST_USER_ID);
+      expect(row.relevance_score).toBe(8.5);
+      expect(row.rating).toBe(4.7);
+      expect(row.review_count).toBe(34);
+    });
+
     it("converts database row format to Prospect correctly", () => {
       const dbRow = {
         id: "p_102",

@@ -12,6 +12,7 @@ import { ProspectDetailModal } from "./components/ProspectDetailModal";
 import { GmailAuth } from "./components/GmailAuth";
 import { GoogleMapView } from "./components/GoogleMapView";
 import { AuthPortal } from "./components/AuthPortal";
+import { LandingPage } from "./components/LandingPage";
 import { PrivacyPolicy } from "./components/PrivacyPolicy";
 import { TermsOfService } from "./components/TermsOfService";
 import { supabase } from "./lib/supabase";
@@ -69,7 +70,7 @@ function MainDashboard({ onNavigate }: MainDashboardProps) {
             </div>
             <div>
               <h1 className="text-sm font-semibold text-main leading-tight tracking-tight">
-                Prospection Locale
+                Freelance Prospection
               </h1>
               <p className="text-xs text-muted">
                 Sourcing Google Maps & prise de contact Gmail
@@ -268,7 +269,7 @@ function MainDashboard({ onNavigate }: MainDashboardProps) {
       {/* Pied de page avec liens réglementaires */}
       <footer className="border-t border-border-subtle mt-auto py-5 bg-surface/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-muted">
-          <p>© {new Date().getFullYear()} Prospection Locale — Outil de prospection B2B locale pour freelances</p>
+          <p>© {new Date().getFullYear()} Freelance Prospection — Outil de prospection B2B locale pour freelances</p>
           <div className="flex items-center gap-4">
             <button
               type="button"
@@ -366,7 +367,10 @@ export default function App() {
   }
 
   if (!session) {
-    return <AuthPortal onAuthSuccess={() => {}} onNavigate={navigate} />;
+    if (currentPath === "/") {
+      return <LandingPage onNavigate={navigate} />;
+    }
+    return <AuthPortal onAuthSuccess={() => navigate("/")} onNavigate={navigate} />;
   }
 
   return (

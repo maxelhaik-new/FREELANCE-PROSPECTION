@@ -17,6 +17,45 @@ describe('Backend API & Service - Gmail', () => {
       expect(encoded).not.toContain('+');
       expect(encoded).not.toContain('/');
       expect(encoded).not.toContain('=');
+
+      // Decode and check RFC 2822 MIME structure
+      const padded = encoded + '='.repeat((4 - (encoded.length % 4)) % 4);
+      const decoded = Buffer.from(padded.replace(/-/g, '+').replace(/_/g, '/'), 'base64').toString('utf-8');
+      
+      expect(decoded).toContain('To: test@example.com');
+      expect(decoded).toContain('Subject: =?utf-8?B?');
+      expect(decoded).toContain('MIME-Version: 1.0');
+      expect(decoded).toContain('Content-Type: text/plain; charset=UTF-8');
+      expect(decoded).toContain('Content-Transfer-Encoding: 8bit');
+      
+      // Crucial: headers and body MUST be separated by CRLF CRLF (\r\n\r\n)
+      const [headers, ...bodyParts] = decoded.split('\r\n\r\n');
+      expect(headers).toBeDefined();
+      expect(bodyParts.join('\r\n\r\n')).toBe('Corps du message');
+    });
+
+    it('should preserve multi-line body with French accents and normalize newlines to CRLF', () => {
+      const subject = 'Chez Madie Les Galinettes : optimiser vos réservations en ligne';
+      const body = 'Bonjour Madie,\n\nNous avons repéré votre établissement à Marseille.\nBien cordialement,\nMaxime';
+      const encoded = encodeEmailMessage('prospect@galinettes.fr', subject, body);
+
+      const padded = encoded + '='.repeat((4 - (encoded.length % 4)) % 4);
+      const decoded = Buffer.from(padded.replace(/-/g, '+').replace(/_/g, '/'), 'base64').toString('utf-8');
+
+      const [headers, ...bodyParts] = decoded.split('\r\n\r\n');
+      expect(headers).toContain('To: prospect@galinettes.fr');
+      const decodedBody = bodyParts.join('\r\n\r\n');
+      expect(decodedBody).toBe('Bonjour Madie,\r\n\r\nNous avons repéré votre établissement à Marseille.\r\nBien cordialement,\r\nMaxime');
+    });
+
+    it('should handle empty recipient when creating drafts', () => {
+      const encoded = encodeEmailMessage('', 'Brouillon sans destinataire', 'Contenu');
+      const padded = encoded + '='.repeat((4 - (encoded.length % 4)) % 4);
+      const decoded = Buffer.from(padded.replace(/-/g, '+').replace(/_/g, '/'), 'base64').toString('utf-8');
+
+      const [headers, ...bodyParts] = decoded.split('\r\n\r\n');
+      expect(headers).not.toContain('To:');
+      expect(bodyParts.join('\r\n\r\n')).toBe('Contenu');
     });
   });
 

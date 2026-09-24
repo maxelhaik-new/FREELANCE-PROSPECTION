@@ -228,7 +228,10 @@ Retourne UNIQUEMENT un tableau JSON d'objets avec idx, keyAngle et relevanceScor
             if (typeof item.idx === "number") {
               analysisMap.set(item.idx, {
                 keyAngle: item.keyAngle,
-                relevanceScore: item.relevanceScore,
+                relevanceScore:
+                  typeof item.relevanceScore === "number" && !isNaN(item.relevanceScore)
+                    ? Math.round(item.relevanceScore * 10) / 10
+                    : 8,
               });
             }
           });
@@ -381,7 +384,10 @@ Retourne UNIQUEMENT un tableau JSON d'objets.`;
         lat: typeof p.lat === "number" ? p.lat : undefined,
         lng: typeof p.lng === "number" ? p.lng : undefined,
         keyAngle: p.keyAngle || "Opportunité de collaboration locale",
-        relevanceScore: p.relevanceScore || 8,
+        relevanceScore:
+          typeof p.relevanceScore === "number" && !isNaN(p.relevanceScore)
+            ? Math.round(p.relevanceScore * 10) / 10
+            : 8,
         status: "searched" as const,
         identified: false,
         notes: "",

@@ -19,7 +19,7 @@ export const TermsOfService: React.FC<TermsPageProps> = ({ onBack, onNavigate })
             </div>
             <div>
               <span className="text-sm font-semibold text-main leading-tight tracking-tight block">
-                Prospection Locale
+                Freelance Prospection
               </span>
               <span className="text-xs text-muted">Conditions Générales d'Utilisation</span>
             </div>
@@ -43,7 +43,7 @@ export const TermsOfService: React.FC<TermsPageProps> = ({ onBack, onNavigate })
               Conditions Générales d'Utilisation (CGU)
             </h1>
             <p className="text-xs text-muted">
-              Dernière mise à jour : 23 septembre 2026 • Application : Prospection Locale Freelance
+              Dernière mise à jour : 23 septembre 2026 • Application : Freelance Prospection
             </p>
           </div>
 
@@ -51,7 +51,7 @@ export const TermsOfService: React.FC<TermsPageProps> = ({ onBack, onNavigate })
           <section className="space-y-3">
             <h2 className="text-lg font-semibold text-main">1. Objet du Service</h2>
             <p className="text-sm text-muted leading-relaxed">
-              L'application <strong>Prospection Locale</strong> est une solution logicielle en ligne (SaaS) conçue pour accompagner les indépendants, freelances et prestataires de services dans l'identification d'entreprises locales (sourcing cartographique) et la préparation de prises de contact professionnelles (B2B).
+              L'application <strong>Freelance Prospection</strong> est une solution logicielle en ligne (SaaS) conçue pour accompagner les indépendants, freelances et prestataires de services dans l'identification d'entreprises locales (sourcing cartographique) et la préparation de prises de contact professionnelles (B2B).
             </p>
             <p className="text-sm text-muted leading-relaxed">
               L'accès et l'utilisation de l'Application impliquent l'acceptation sans réserve des présentes Conditions Générales d'Utilisation.
@@ -72,9 +72,9 @@ export const TermsOfService: React.FC<TermsPageProps> = ({ onBack, onNavigate })
 
           {/* Section 3 : Réglementation de la Prospection Commerciale B2B */}
           <section className="space-y-4 rounded-xl bg-canvas border border-border-subtle p-5 sm:p-6">
-            <div className="flex items-center gap-2 text-primary font-semibold text-base">
-              <ShieldAlert className="w-4.5 h-4.5 text-primary" />
-              <h2>3. Conformité Légale et Interdiction du Spam (Charte d'Usage Responsable)</h2>
+            <div className="flex items-center gap-2">
+              <ShieldAlert className="w-5 h-5 text-primary shrink-0" />
+              <h2 className="text-lg font-semibold text-main">3. Conformité Légale et Interdiction du Spam (Charte d'Usage Responsable)</h2>
             </div>
             <p className="text-sm text-muted leading-relaxed">
               L'utilisateur s'engage expressément à respecter les dispositions légales applicables en matière de prospection électronique professionnelle (notamment l'article L. 34-5 du Code des postes et des communications électroniques et les délibérations de la CNIL) :
@@ -133,7 +133,7 @@ export const TermsOfService: React.FC<TermsPageProps> = ({ onBack, onNavigate })
 
           {/* Footer inside card */}
           <div className="border-t border-border-subtle pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-muted">
-            <span>© {new Date().getFullYear()} Prospection Locale</span>
+            <span>© {new Date().getFullYear()} Freelance Prospection</span>
             {onNavigate && (
               <div className="flex items-center gap-3">
                 <button

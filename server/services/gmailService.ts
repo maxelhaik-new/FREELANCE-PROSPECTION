@@ -5,22 +5,21 @@
 
 export function encodeEmailMessage(to: string, subject: string, body: string): string {
   const utf8Subject = subject
-    ? `=?utf-8?B?${Buffer.from(subject).toString("base64")}?=`
+    ? `=?utf-8?B?${Buffer.from(subject, "utf-8").toString("base64")}?=`
     : "";
 
-  const messageParts = [
+  const headers = [
     to ? `To: ${to}` : "",
     `Subject: ${utf8Subject}`,
     "MIME-Version: 1.0",
     "Content-Type: text/plain; charset=UTF-8",
-    "Content-Transfer-Encoding: 7bit",
-    "",
-    body || "",
+    "Content-Transfer-Encoding: 8bit",
   ].filter(Boolean);
 
-  const rawMessage = messageParts.join("\r\n");
+  const normalizedBody = (body || "").replace(/\r?\n/g, "\r\n");
+  const rawMessage = `${headers.join("\r\n")}\r\n\r\n${normalizedBody}`;
 
-  return Buffer.from(rawMessage)
+  return Buffer.from(rawMessage, "utf-8")
     .toString("base64")
     .replace(/\+/g, "-")
     .replace(/\//g, "_")
